@@ -1,0 +1,51 @@
+﻿@page
+@model Myproject.Pages.Assign_Task.Edit_taskModel
+@{
+}
+
+<br />
+<h2>Edit Task</h2>
+
+@if (Model.errormessage.Length > 0)
+{
+    <div class="alert alert-warning alert-heading fade show">
+        <strong>@Model.errormessage</strong>
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+}
+
+
+<form method="POST">
+    <input type="hidden" name="empid" value="@Model.employeesInfo.empid" />
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="emp_name" value="@Model.employeesInfo.emp_name" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Task</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="emp_task" value="@Model.employeesInfo.emp_task" />
+        </div>
+    </div>
+
+    @if (Model.successmessage.Length > 0)
+    {
+        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <strong>@Model.successmessage</strong>
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+        </div>
+    }
+
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
