@@ -1,0 +1,26 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+
+    try
+    {
+        String empid = Request.Query["empid"];
+        String connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=myproject;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            String sql = "delete from assigntask where empid=@empid";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@empid", empid);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+
+    }
+    Response.Redirect("/Assign_Task/task");
+}
